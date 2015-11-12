@@ -1,13 +1,9 @@
 'use strict';
 
 const React = require('react');
+const HelloMessage = require('./components/hello.jsx');
 
-var HelloMessage = React.createClass({
-  render (){
-    return (
-      <div>Hello {this.props.name}</div>
-    );
-  }
-});
 
-React.render(<HelloMessage name="John" />, document.getElementById('app'));
+// import { HelloMessage } from './components/hello.jsx';
+
+React.render(<HelloMessage name="John1" />, document.getElementById('app'));
