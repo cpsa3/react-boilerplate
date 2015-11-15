@@ -9,11 +9,13 @@ var reactify = require('reactify'); //Transforms React JSX to JS
 var source = require('vinyl-source-stream'); // Use conventional text streams with Gulp
 var concat = require('gulp-concat'); //Concatenates files
 var lint = require('gulp-eslint'); //Lint JS files, including JSX
+var mocha = require('gulp-mocha'); //Run Mocha tests
 
 var config = {
     port: 9005,
     devBaseUrl: 'http://localhost',
     paths: {
+        test: './test/*.js',
         html: './src/*.html',
         js: './src/**/*.js',
         css: [
@@ -74,6 +76,17 @@ gulp.task('lint', function() {
 gulp.task('watch', function() {
     gulp.watch(config.paths.html, ['html']);
     gulp.watch(config.paths.js, ['js', 'lint']);
+});
+
+gulp.task('test', function() {
+    return gulp.src(config.paths.test)
+        .pipe(mocha())
+        .once('error', function() {
+            process.exit(1);
+        })
+        .once('end', function() {
+            process.exit();
+        });
 });
 
 gulp.task('default', ['html', 'js', 'css', 'lint', 'open', 'watch']);
