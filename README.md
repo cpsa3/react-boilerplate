@@ -12,3 +12,9 @@
 -- opens your browser at the dev URL  
 -- reloads the browser upon save  
 
+## Setup
+- Install dependencies `npm install`
+- To watch and re-compile on change, run `gulp`
+
+## Test
+- To run unit test `gulp test`
